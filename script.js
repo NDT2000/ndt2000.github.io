@@ -84,7 +84,7 @@ function createParticles() {
 }
 
 // Typing effect for hero subtitle
-function typeWriter(element, text, speed = 100) {
+function typeWriter(element, text, speed = 25) {
     element.textContent = '';
     element.style.opacity = '1';
     let i = 0;
@@ -97,7 +97,7 @@ function typeWriter(element, text, speed = 100) {
         }
     }
     
-    setTimeout(type, 2000); // Start after title animation
+    setTimeout(type, 1000); // Start after title animation
 }
 
 // Skill bars animation
