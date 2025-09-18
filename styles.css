@@ -439,9 +439,15 @@ body {
 .experience-description {
     color: var(--text-gray);
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
     font-weight: 400;
     letter-spacing: -0.005em;
+}
+
+.experience-description p {
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
 }
 
 .experience-description li {
