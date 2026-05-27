@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nayan Taori - Software Developer</title>
+    <title>Nayan Taori - MLOps & DevOps Engineer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
         <div class="floating-elements"></div>
         <div class="hero-content">
             <h1 class="hero-title">Nayan Taori</h1>
-            <p class="hero-subtitle">Software Developer & Computer Science Graduate Student</p>
+            <p class="hero-subtitle">MLOps & DevOps Engineer | M.S. Computer Science, NC State University (May 2026)</p>
             <a href="#about" class="hero-cta">Explore My Work</a>
         </div>
     </section>
@@ -53,8 +53,8 @@
                     </div>
                 </div>
                 <div class="about-text">
-                    <h3>Computer Science Graduate Student</h3>
-                    <p>I'm a passionate software developer currently pursuing my Master of Computer Science at North Carolina State University with a GPA of 3.8/4. With experience at leading companies like CitiCorp and Persistent Systems, I specialize in full-stack development, machine learning, and creating innovative solutions.</p>
+                    <h3>MLOps & DevOps Engineer</h3>
+                    <p>I'm a software engineer specializing in MLOps and DevOps, recently graduated with a Master of Computer Science from North Carolina State University (GPA: 3.8/4.0, May 2026). With professional experience at CitiCorp and Persistent Systems, I build cloud-native, production-grade systems — from CI/CD pipelines and containerized microservices to ML-powered applications and observability infrastructure.</p>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fab fa-linkedin"></i>
@@ -193,57 +193,76 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">
-                            Personal Finance Management System <a href="https://github.com/NDT2000/Personal-Finance" target="_blank" class="project-link">
+
+                <!-- Finance Tracker v2 — featured/primary -->
+                <div class="project-card" style="border-color: rgba(102, 126, 234, 0.4); grid-column: span 1;">
+                    <h3 class="project-title">
+                        Personal Finance Tracker v2
+                        <a href="https://github.com/NDT2000" target="_blank" style="margin-left: 0.5rem; color: var(--primary-color); font-size: 1rem;">
                             <i class="fab fa-github"></i>
                         </a>
-                        </h3>
-                    </div>
-                    <div class="project-duration">2025</div>
+                        <span style="margin-left: 0.5rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; background: rgba(102,126,234,0.25); border-radius: 10px; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle;">IN PROGRESS</span>
+                    </h3>
+                    <div class="project-duration">May 2026 – Present</div>
                     <p class="project-description">
-                        Comprehensive React-based personal finance application with intelligent machine learning capabilities for transaction categorization, financial predictions, and goal tracking. Features AI-powered transaction categorization using TF-IDF algorithms with 85-95% accuracy, predictive analytics using regression models, and real-time financial insights. Built with modern full-stack architecture supporting 10,000+ users with 99.9% uptime.
+                        Production-grade budget tracking application with ML-powered spend forecasting. Features a Java Spring Boot REST API with JWT authentication, a Python FastAPI ML service using linear regression to predict end-of-month overspend, and a React + Recharts frontend dashboard. DevOps-first architecture: multi-container Docker Compose, GitHub Actions CI/CD (test → build → push to Docker Hub), Terraform-provisioned AWS EC2 deployment, and Prometheus + Grafana observability.
                     </p>
-                    <div class="project-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-robot"></i>
-                            <span>AI-Powered Categorization</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Predictive Analytics</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Enterprise Security</span>
-                        </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java Spring Boot</span>
+                        <span class="tech-tag">Python FastAPI</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker Compose</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">AWS EC2</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Grafana</span>
                     </div>
+                </div>
+
+                <!-- RAG Document Chatbot -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        RAG Document Chatbot
+                        <span style="margin-left: 0.5rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; background: rgba(240,147,251,0.15); border-radius: 10px; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle; color: var(--accent-color);">PLANNED</span>
+                    </h3>
+                    <div class="project-duration">Coming Soon</div>
+                    <p class="project-description">
+                        Retrieval-Augmented Generation chatbot serving contextual answers from uploaded documents. Designed with Python FastAPI, LangChain, pgvector embeddings, and an LLM backend. Full DevOps layer with Docker containerization and GitHub Actions CI/CD pipeline.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python FastAPI</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">pgvector</span>
+                        <span class="tech-tag">LLM</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                    </div>
+                </div>
+
+                <!-- Finance Management System v1 -->
+                <div class="project-card">
+                    <h3 class="project-title">
+                        Personal Finance Management System v1
+                        <a href="https://github.com/NDT2000/Personal-Finance" target="_blank" style="margin-left: 0.5rem; color: var(--primary-color); font-size: 1rem;">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </h3>
+                    <div class="project-duration">2023</div>
+                    <p class="project-description">
+                        Full-stack finance platform with ML-based transaction categorization (TF-IDF), regression-based spending forecasts, and real-time dashboards. Built with React 18, Node.js, and MySQL, featuring Chart.js visualizations and Tailwind CSS styling.
+                    </p>
                     <div class="project-tech">
                         <span class="tech-tag">React 18</span>
                         <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Express.js</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">TF-IDF</span>
-                        <span class="tech-tag">Machine Learning</span>
                         <span class="tech-tag">Chart.js</span>
                         <span class="tech-tag">Tailwind CSS</span>
                     </div>
                 </div>
-                <div class="project-card">
-                    <h3 class="project-title">Dark Web Data Classification</h3>
-                    <div class="project-duration">Aug 2022 – Oct 2023</div>
-                    <p class="project-description">
-                        Developed a Bi-LSTM model to classify labelled and unlabelled data from the dark web. Used TorCrawler for data collection and achieved 3% better results than previous implementations with a dataset of 10,000+ entries.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Bi-LSTM</span>
-                        <span class="tech-tag">TorCrawler</span>
-                        <span class="tech-tag">Machine Learning</span>
-                        <span class="tech-tag">Data Mining</span>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
