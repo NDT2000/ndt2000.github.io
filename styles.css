@@ -64,6 +64,11 @@ body {
     letter-spacing: -0.02em;
 }
 
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
