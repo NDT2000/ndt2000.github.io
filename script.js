@@ -3,25 +3,24 @@ function updateScrollProgress() {
     const scrollProgress = document.getElementById('scrollProgress');
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = (scrollTop / scrollHeight) * 100;
-    scrollProgress.style.width = scrollPercentage + '%';
+    const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    if (scrollProgress) scrollProgress.style.width = scrollPercentage + '%';
 }
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for in-page nav links, with automatic mobile-menu close
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        closeMobileMenu();
     });
 });
 
-// Intersection Observer for animations
+// Intersection Observer for scroll-in animations
 const observerOptions = {
     threshold: 0.2,
     rootMargin: '0px 0px -50px 0px'
@@ -35,36 +34,68 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Dynamic navbar background on scroll
-let lastScrollY = window.scrollY;
-
+// Navbar background state on scroll (nav itself always stays visible/accessible)
 function updateNavbar() {
     const navbar = document.querySelector('.navbar');
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > 100) {
-        navbar.style.background = 'rgba(15, 15, 35, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        navbar.style.background = 'rgba(15, 15, 35, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-    
-    // Hide/show navbar on scroll
-    if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        navbar.style.transform = 'translateY(0)';
-    }
-    
-    lastScrollY = currentScrollY;
+    if (!navbar) return;
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
 }
 
-// Particle effect for hero section
+// --- Mobile menu ---
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.getElementById('navLinks');
+
+function openMobileMenu() {
+    if (!navLinks || !mobileMenuBtn) return;
+    navLinks.classList.add('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    mobileMenuBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+}
+
+function closeMobileMenu() {
+    if (!navLinks || !mobileMenuBtn) return;
+    navLinks.classList.remove('active');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+}
+
+function toggleMobileMenu() {
+    if (!navLinks) return;
+    if (navLinks.classList.contains('active')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+}
+
+// Close mobile menu when clicking outside it
+document.addEventListener('click', (e) => {
+    if (!navLinks || !navLinks.classList.contains('active')) return;
+    const clickedInsideMenu = navLinks.contains(e.target) || (mobileMenuBtn && mobileMenuBtn.contains(e.target));
+    if (!clickedInsideMenu) closeMobileMenu();
+});
+
+// Close mobile menu on resize back up to desktop width
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMobileMenu();
+});
+
+// Respect the user's motion preference and device input type before running
+// any purely-decorative effects (particles, custom cursor).
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+const wantsDecorativeEffects = !prefersReducedMotion && hasFinePointer;
+
+// Particle effect for hero section (skipped on touch devices / reduced motion)
 function createParticles() {
     const hero = document.querySelector('.hero');
-    const particleCount = 50;
-    
+    if (!hero) return;
+    const particleCount = 30;
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -72,7 +103,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(102, 126, 234, 0.6);
+            background: rgba(45, 212, 191, 0.6);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -83,145 +114,44 @@ function createParticles() {
     }
 }
 
-// Typing effect for hero subtitle
-function typeWriter(element, text, speed = 25) {
-    element.textContent = '';
-    element.style.opacity = '1';
-    let i = 0;
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    setTimeout(type, 1000); // Start after title animation
-}
-
-// Skill bars animation
+// Skill tag stagger-in animation
 function animateSkillBars() {
     const skillCategories = document.querySelectorAll('.skill-category');
-    
+
     skillCategories.forEach(category => {
         const tags = category.querySelectorAll('.skill-tag');
         tags.forEach((tag, index) => {
             tag.style.opacity = '0';
             tag.style.transform = 'translateY(20px)';
-            
+
             setTimeout(() => {
                 tag.style.transition = 'all 0.5s ease';
                 tag.style.opacity = '1';
                 tag.style.transform = 'translateY(0)';
-            }, index * 100);
+            }, index * 80);
         });
     });
 }
 
-// Hover effects for cards
-function addHoverEffects() {
-    const cards = document.querySelectorAll('.experience-content, .skill-category, .project-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            this.style.boxShadow = '0 25px 50px rgba(102, 126, 234, 0.3)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = 'none';
-        });
+// Custom cursor glow (desktop with a fine pointer only)
+function initCursorGlow() {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-glow';
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
 }
 
-// Initialize all effects
-window.addEventListener('scroll', () => {
-    updateScrollProgress();
-    updateNavbar();
-});
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll(
-        '.section-title, .about-text, .experience-item, .skill-category, .project-card'
-    );
-    
-    animatedElements.forEach(el => observer.observe(el));
-    
-    // Add staggered animation for skill categories and project cards
-    const skillCategories = document.querySelectorAll('.skill-category');
-    skillCategories.forEach((category, index) => {
-        category.style.transitionDelay = `${index * 0.2}s`;
-    });
-
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 0.3}s`;
-    });
-
-    const experienceItems = document.querySelectorAll('.experience-item');
-    experienceItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.4}s`;
-    });
-
-    // Start typing effect for hero subtitle
-    const heroSubtitle = document.querySelector('.hero-subtitle');
-    const originalText = heroSubtitle.textContent;
-    typeWriter(heroSubtitle, originalText);
-    
-    // Create particles
-    createParticles();
-    
-    // Add hover effects
-    addHoverEffects();
-    
-    // Animate skill bars when skills section is visible
-    const skillsSection = document.getElementById('skills');
-    const skillsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTimeout(animateSkillBars, 500);
-                skillsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    skillsObserver.observe(skillsSection);
-});
-
-// Add some interactive cursor effect
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.cursor');
-    if (!cursor) {
-        const cursorElement = document.createElement('div');
-        cursorElement.className = 'cursor';
-        cursorElement.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all 0.1s ease;
-        `;
-        document.body.appendChild(cursorElement);
-    }
-    
-    document.querySelector('.cursor').style.left = e.clientX - 10 + 'px';
-    document.querySelector('.cursor').style.top = e.clientY - 10 + 'px';
-});
-
-// Add click ripple effect
+// Click ripple effect
 document.addEventListener('click', (e) => {
     const ripple = document.createElement('div');
     ripple.style.cssText = `
         position: absolute;
         border-radius: 50%;
-        background: rgba(102, 126, 234, 0.6);
+        background: rgba(45, 212, 191, 0.5);
         transform: scale(0);
         animation: ripple 0.6s linear;
         left: ${e.clientX - 25}px;
@@ -231,61 +161,63 @@ document.addEventListener('click', (e) => {
         pointer-events: none;
         z-index: 9999;
     `;
-    
+
     document.body.appendChild(ripple);
-    
+
     setTimeout(() => {
         ripple.remove();
     }, 600);
 });
 
-// Mobile menu toggle (for future enhancement)
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-}
+// Initialize everything once the DOM is ready
+document.addEventListener('DOMContentLoaded', function () {
+    // Observe elements for scroll-in animation
+    const animatedElements = document.querySelectorAll(
+        '.section-title, .about-text, .experience-item, .skill-category, .work-card'
+    );
+    animatedElements.forEach(el => observer.observe(el));
 
-// Add mobile menu button functionality if needed
-const createMobileMenuButton = () => {
-    const navbar = document.querySelector('.nav-content');
-    const mobileMenuBtn = document.createElement('button');
-    mobileMenuBtn.className = 'mobile-menu-btn';
-    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    mobileMenuBtn.style.cssText = `
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-    `;
-    
-    // Show mobile menu button on small screens
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const handleMediaQuery = (e) => {
-        if (e.matches) {
-            mobileMenuBtn.style.display = 'block';
-            navbar.appendChild(mobileMenuBtn);
-        } else {
-            mobileMenuBtn.style.display = 'none';
-        }
-    };
-    
-    mediaQuery.addListener(handleMediaQuery);
-    handleMediaQuery(mediaQuery);
-    
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-};
+    // Staggered animation delays
+    document.querySelectorAll('.skill-category').forEach((category, index) => {
+        category.style.transitionDelay = `${index * 0.15}s`;
+    });
 
-// Initialize mobile menu
-document.addEventListener('DOMContentLoaded', createMobileMenuButton);
+    document.querySelectorAll('.work-card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.15}s`;
+    });
 
-// Add loading animation
-window.addEventListener('load', function() {
+    document.querySelectorAll('.experience-item').forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.15}s`;
+    });
+
+    // Decorative, non-essential effects only on capable devices
+    if (wantsDecorativeEffects) {
+        createParticles();
+        initCursorGlow();
+    }
+
+    // Animate skill tags in once the skills section is visible
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(animateSkillBars, 400);
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillsObserver.observe(skillsSection);
+    }
+});
+
+// Loading state
+window.addEventListener('load', function () {
     document.body.classList.add('loaded');
 });
 
-// Performance optimization - throttle scroll events
+// Throttled scroll handling via rAF
 let ticking = false;
 function requestTick() {
     if (!ticking) {

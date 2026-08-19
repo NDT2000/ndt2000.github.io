@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nayan Taori - MLOps & DevOps Engineer</title>
+    <title>Nayan Taori — Full Stack Developer and AI Engineer</title>
+    <meta name="description" content="Nayan Taori — Full Stack Developer and AI Engineer. M.S. Computer Science, NC State University. Open to relocate to Seattle, WA.">
+    <script>
+        // Progressive enhancement gate: only pre-hide scroll-reveal content when
+        // JS + IntersectionObserver are actually available, so a slow/broken
+        // script never leaves sections permanently invisible.
+        if ('IntersectionObserver' in window) {
+            document.documentElement.classList.add('js-anim');
+        }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +30,18 @@
         <div class="container">
             <div class="nav-content">
                 <div class="logo"><a href="#home">Nayan Taori</a></div>
-                <ul class="nav-links">
-                    <li><a href="#work">Work</a></li>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#work">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="Nayan_Taori_Resume.pdf" class="nav-cta" download>Resume</a></li>
                 </ul>
             </div>
         </div>
@@ -37,9 +51,15 @@
     <section class="hero" id="home">
         <div class="floating-elements"></div>
         <div class="hero-content">
+            <p class="hero-eyebrow">Full Stack Developer and AI Engineer</p>
             <h1 class="hero-title">Nayan Taori</h1>
-            <p class="hero-subtitle">Full Stack Software Engineer & DevOps Engineer | M.S. Computer Science, NC State University (May 2026)</p>
-            <a href="#about" class="hero-cta">Explore My Work</a>
+            <p class="hero-subtitle">M.S. Computer Science, NC State University · Open to relocate to Seattle, WA</p>
+            <div class="hero-actions">
+                <a href="#experience" class="hero-cta">See My Work</a>
+                <a href="Nayan_Taori_Resume.pdf" class="hero-cta hero-cta-secondary" download>
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
         </div>
     </section>
 
@@ -50,20 +70,24 @@
             <div class="about-content">
                 <div class="about-image">
                     <div class="profile-img">
-                        <img src="Profile.jpeg" alt="Nayan Taori - Software Developer" class="profile-photo">
+                        <img src="Profile.jpeg" alt="Nayan Taori - Software Developer" class="profile-photo" onerror="this.parentElement.classList.add('profile-fallback'); this.remove();">
                     </div>
                 </div>
                 <div class="about-text">
-                    <h3>MLOps & DevOps Engineer</h3>
-                    <p>I'm a software engineer specializing in MLOps and DevOps, recently graduated with a Master of Computer Science from North Carolina State University (GPA: 3.8/4.0, May 2026). With professional experience at CitiCorp and Persistent Systems, I build cloud-native, production-grade systems — from CI/CD pipelines and containerized microservices to ML-powered applications and observability infrastructure.</p>
+                    <h3>Full Stack Developer and AI Engineer</h3>
+                    <p>I'm a software engineer specializing in full-stack development and AI, with a Master of Computer Science from North Carolina State University (GPA: 3.8/4.0, May 2026). With professional experience at CitiCorp and Persistent Systems, I build cloud-native, production-grade systems — from CI/CD pipelines and containerized microservices to AI-powered applications and observability infrastructure.</p>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fab fa-linkedin"></i>
-                            <span>linkedin.com/in/nayan-taori</span>
+                            <a href="https://linkedin.com/in/nayan-taori" target="_blank" rel="noopener">linkedin.com/in/nayan-taori</a>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Raleigh, NC</span>
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/NDT2000" target="_blank" rel="noopener">github.com/NDT2000</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>Open to Relocate — Seattle, WA</span>
                         </div>
                     </div>
                 </div>
@@ -72,39 +96,51 @@
     </section>
 
     <!-- Experience Section -->
-    <section class="section" id="experience">
+    <section class="section section-alt" id="experience">
         <div class="container">
             <h2 class="section-title">Work Experience</h2>
             <div class="experience-timeline">
+
                 <div class="experience-item">
                     <div class="experience-content">
                         <div class="experience-date">Aug 2025 – Dec 2025</div>
-                        <h3 class="experience-title">Independent Study Researcher</h3>
-                        <div class="experience-company">North Carolina State University – Professor Ed Gehringer</div>
+                        <h3 class="experience-title">DevOps Engineer, Independent Study</h3>
+                        <div class="experience-company">Expertiza — North Carolina State University</div>
                         <div class="experience-description">
-                            <p>Conducting comprehensive research and development work focused on modernizing development environments and infrastructure systems. The work involves analyzing existing codebases, updating technical dependencies, and ensuring cross-platform compatibility across different operating systems. The research encompasses reviewing and optimizing repository structures, implementing best practices for development workflows, and contributing to the advancement of educational technology platforms through systematic modernization efforts.</p>
+                            <ul>
+                                <li>Contributed to the Expertiza open-source platform: engineered Dockerized development environments and automated build and QA pipelines using GitHub Actions, cutting student onboarding time by ~40%.</li>
+                                <li>Built and extended a GitHub Actions CI/CD pipeline with automated unit, integration, and deployment tests; diagnosed and resolved production pipeline incidents, improving build reliability by 25%.</li>
+                                <li>Created anonymized database images enabling production-like environments for student development and performance testing, eliminating exposure of real user data across all course environments.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="experience-item">
                     <div class="experience-content">
                         <div class="experience-date">Jun 2025 – Aug 2025</div>
-                        <h3 class="experience-title">App Developer (Team Leader)</h3>
-                        <div class="experience-company">Mednet Labs – Oakland Systems Pvt. Ltd., Nagpur</div>
+                        <h3 class="experience-title">Software Developer Intern</h3>
+                        <div class="experience-company">Mednet Labs — Oakland Systems, Nagpur</div>
                         <div class="experience-description">
-                            <p>Leading a dynamic development team through a comprehensive mobile app transformation that revolutionized patient interactions with medical services. The project involved architecting robust, scalable solutions using cutting-edge technologies including TypeScript and React Native, creating seamless cross-platform experiences that integrate seamlessly with MySQL backend systems for reliable data management and optimal performance. The carefully designed user experience and intuitive interface development resulted in a projected 50% boost in patient engagement, making healthcare services significantly more accessible and user-friendly for thousands of patients across the platform.</p>
+                            <ul>
+                                <li>One of two engineers rebuilding a patient-facing healthcare application in React Native and TypeScript, improving interactions between patients, providers, and hospital services.</li>
+                                <li>Implemented core workflows for accessing medical reports and remote healthcare services; built components of a Hospital Management System using Java and relational database design.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="experience-item">
                     <div class="experience-content">
                         <div class="experience-date">Jul 2023 – Jul 2024</div>
                         <h3 class="experience-title">Application Developer</h3>
                         <div class="experience-company">CitiCorp India Pvt. Ltd., Pune</div>
                         <div class="experience-description">
-                            <p>Playing a pivotal role in transforming CitiCorp's data analytics capabilities through the development of powerful, interactive dashboards that revolutionized how teams visualize and interpret complex financial information. The work involved creating intuitive interfaces using modern web technologies including Spring Boot, ReactJS, and Angular, which streamlined daily workflows for hundreds of users and delivered measurable productivity gains exceeding 20%. The role extended beyond development to championing code quality excellence through comprehensive testing strategies and clean code practices, successfully elevating test coverage from 79% to 85%. The experience also included actively contributing to the organization's knowledge culture through mentoring and conducting knowledge transfer sessions with over 100 colleagues, fostering an environment of continuous learning and technical excellence.</p>
+                            <ul>
+                                <li>Designed and built Angular-based web apps and Java Spring Boot REST API microservices for an enterprise compliance platform (Oracle DB); implemented automated risk-routing logic that improved team productivity by 20%.</li>
+                                <li>Wrote unit tests with JUnit and Mockito, growing coverage from 79% to 82%; participated in code reviews and followed security and engineering best practices.</li>
+                                <li>Maintained technical documentation and design notes for APIs and system architecture; led knowledge-transfer sessions for 50+ engineers.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -115,8 +151,63 @@
                         <h3 class="experience-title">Software Development Intern</h3>
                         <div class="experience-company">Persistent Systems Ltd., Pune (Illuminati Program)</div>
                         <div class="experience-description">
-                            <p>Contributing to an innovative office space management solution as part of the prestigious Illuminati internship program at Persistent Systems, featuring an advanced seat-booking system with QR code integration. The experience provided invaluable hands-on exposure to enterprise-grade development practices, working extensively with industry-standard tools including Swagger for API documentation, SonarQube for code quality analysis, Postman for API testing, and AWS S3 for cloud storage solutions. The project's immediate success became evident through the overwhelming positive response of 250+ users on the first deployment, serving as a powerful validation of both the solution's effectiveness and the growing technical capabilities developed in a professional environment.</p>
+                            <ul>
+                                <li>Developed a QR-code-based office seat-booking feature using Spring Boot and AWS S3, receiving 250+ user responses on first deployment; validated APIs with Swagger, Postman, and SonarQube.</li>
+                                <li>Worked within an Agile/Scrum team, maintaining code quality standards and participating in sprint planning and daily standups.</li>
+                            </ul>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills &amp; Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Frameworks &amp; Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> DevOps &amp; Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Docker Compose</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">AWS (EC2, S3, ECS, App Runner)</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Nginx</span>
                     </div>
                 </div>
             </div>
@@ -124,23 +215,45 @@
     </section>
 
     <!-- Work Section -->
-    <section class="section" id="work">
+    <section class="section section-alt" id="work">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="work-grid">
 
-                <!-- Finance Tracker v2 — featured/primary -->
-                <div class="work-card" style="border-color: rgba(102, 126, 234, 0.4); grid-column: span 1;">
+                <!-- AI-Assisted Clinical Notes Workflow -->
+                <div class="work-card work-card-featured">
                     <h3 class="work-title">
-                        Personal Finance Tracker v2
-                        <a href="https://github.com/NDT2000" target="_blank" style="margin-left: 0.5rem; color: var(--primary-color); font-size: 1rem;">
+                        AI-Assisted Clinical Notes Workflow
+                        <a href="https://github.com/NDT2000/AI-Assisted-Clinical-Notes-Workflow" target="_blank" rel="noopener" class="work-link">
                             <i class="fab fa-github"></i>
                         </a>
-                        <span style="margin-left: 0.5rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; background: rgba(102,126,234,0.25); border-radius: 10px; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle;">IN PROGRESS</span>
+                        <span class="work-badge">2026</span>
+                    </h3>
+                    <div class="work-duration">Aug 2026</div>
+                    <p class="work-description">
+                        React/TypeScript workflow app managing AI-generated clinical notes end-to-end, with a first-class state machine and role- and ownership-based authorization enforced independently on client and mock server. Offline-first architecture with debounced autosave, an IndexedDB-backed write queue, and three-way conflict resolution to prevent data loss across concurrent edits — scaled to 100K+ records via cursor pagination and virtualized rendering, with full unit/integration test coverage (Vitest, RTL).
+                    </p>
+                    <div class="work-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">IndexedDB</span>
+                        <span class="tech-tag">State Machines</span>
+                        <span class="tech-tag">Vitest</span>
+                    </div>
+                </div>
+
+                <!-- Finance Tracker v2 -->
+                <div class="work-card">
+                    <h3 class="work-title">
+                        Personal Finance Tracker
+                        <a href="https://github.com/NDT2000/Finance-Tracker" target="_blank" rel="noopener" class="work-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <span class="work-badge work-badge-progress">IN PROGRESS</span>
                     </h3>
                     <div class="work-duration">May 2026 – Present</div>
                     <p class="work-description">
-                        Production-grade budget tracking application with ML-powered spend forecasting. Features a Java Spring Boot REST API with JWT authentication, a Python FastAPI ML service using linear regression to predict end-of-month overspend, and a React + Recharts frontend dashboard. DevOps-first architecture: multi-container Docker Compose, GitHub Actions CI/CD (test → build → push to Docker Hub), Terraform-provisioned AWS EC2 deployment, and Prometheus + Grafana observability.
+                        Containerized, multi-service personal finance platform built with Java Spring Boot, Python FastAPI, React, and PostgreSQL. JWT-secured REST APIs, category-based month-end spending forecasts, per-user data isolation, Docker Compose orchestration, health checks, automated tests, and GitHub Actions CI/CD. Multi-language test coverage across Java, Python, and TypeScript services; security best practices including BCrypt and environment-separated secrets.
                     </p>
                     <div class="work-tech">
                         <span class="tech-tag">Java Spring Boot</span>
@@ -149,30 +262,24 @@
                         <span class="tech-tag">PostgreSQL</span>
                         <span class="tech-tag">Docker Compose</span>
                         <span class="tech-tag">GitHub Actions</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">AWS EC2</span>
-                        <span class="tech-tag">Prometheus</span>
-                        <span class="tech-tag">Grafana</span>
                     </div>
                 </div>
 
-                <!-- RAG Document Chatbot -->
+                <!-- Personal RAG Chatbot -->
                 <div class="work-card">
                     <h3 class="work-title">
-                        RAG Document Chatbot
-                        <span style="margin-left: 0.5rem; font-size: 0.75rem; padding: 0.2rem 0.6rem; background: rgba(240,147,251,0.15); border-radius: 10px; font-weight: 600; letter-spacing: 0.02em; vertical-align: middle; color: var(--accent-color);">PLANNED</span>
+                        Personal RAG Chatbot
+                        <span class="work-badge">2026</span>
                     </h3>
-                    <div class="work-duration">Coming Soon</div>
+                    <div class="work-duration">2026</div>
                     <p class="work-description">
-                        Retrieval-Augmented Generation chatbot serving contextual answers from uploaded documents. Designed with Python FastAPI, LangChain, pgvector embeddings, and an LLM backend. Full DevOps layer with Docker containerization and GitHub Actions CI/CD pipeline.
+                        Retrieval-augmented generation pipeline for agentic retrieval over documents, using a ChromaDB vector store, sentence-transformers for semantic embedding, and the Groq API for inference. Tuned retrieval parameters against measured output quality to maximize relevance for real user queries.
                     </p>
                     <div class="work-tech">
-                        <span class="tech-tag">Python FastAPI</span>
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">pgvector</span>
-                        <span class="tech-tag">LLM</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">ChromaDB</span>
+                        <span class="tech-tag">Sentence-Transformers</span>
+                        <span class="tech-tag">Groq API</span>
                     </div>
                 </div>
 
@@ -180,7 +287,7 @@
                 <div class="work-card">
                     <h3 class="work-title">
                         Personal Finance Management System v1
-                        <a href="https://github.com/NDT2000/Personal-Finance" target="_blank" style="margin-left: 0.5rem; color: var(--primary-color); font-size: 1rem;">
+                        <a href="https://github.com/NDT2000/Personal-Finance" target="_blank" rel="noopener" class="work-link">
                             <i class="fab fa-github"></i>
                         </a>
                     </h3>
@@ -194,7 +301,6 @@
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">TF-IDF</span>
                         <span class="tech-tag">Chart.js</span>
-                        <span class="tech-tag">Tailwind CSS</span>
                     </div>
                 </div>
 
@@ -202,80 +308,18 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section" id="skills">
+    <!-- Footer / Contact -->
+    <footer class="footer" id="contact">
         <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Ruby</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> Databases & Systems</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Oracle</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">NoSQL</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Windows</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Frameworks & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ReactJS</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kafka</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">AWS</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> Specializations</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Neural Networks</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Algorithm Design</span>
-                        <span class="skill-tag">Software Engineering</span>
-                        <span class="skill-tag">DevOps</span>
-                        <span class="skill-tag">Cloud Computing</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
+            <h2 class="footer-title">Let's Connect</h2>
+            <p class="footer-subtitle">Open to relocate to Seattle, WA — reach out about full-time MLOps / DevOps / Software Engineering roles.</p>
             <div class="social-links">
-                <a href="mailto:ntaori@ncsu.edu"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/nayan-taori" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nayantaori14@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/nayan-taori" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/NDT2000" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="Nayan_Taori_Resume.pdf" download aria-label="Download Resume"><i class="fas fa-file-arrow-down"></i></a>
             </div>
-            <p>&copy; 2026 Nayan Taori. All rights reserved.</p>
+            <p class="footer-copy">&copy; 2026 Nayan Taori. All rights reserved.</p>
         </div>
     </footer>
 
