@@ -114,25 +114,6 @@ function createParticles() {
     }
 }
 
-// Skill tag stagger-in animation
-function animateSkillBars() {
-    const skillCategories = document.querySelectorAll('.skill-category');
-
-    skillCategories.forEach(category => {
-        const tags = category.querySelectorAll('.skill-tag');
-        tags.forEach((tag, index) => {
-            tag.style.opacity = '0';
-            tag.style.transform = 'translateY(20px)';
-
-            setTimeout(() => {
-                tag.style.transition = 'all 0.5s ease';
-                tag.style.opacity = '1';
-                tag.style.transform = 'translateY(0)';
-            }, index * 80);
-        });
-    });
-}
-
 // Custom cursor glow (desktop with a fine pointer only)
 function initCursorGlow() {
     const cursor = document.createElement('div');
@@ -173,15 +154,11 @@ document.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', function () {
     // Observe elements for scroll-in animation
     const animatedElements = document.querySelectorAll(
-        '.section-title, .about-text, .experience-item, .skill-category, .work-card'
+        '.section-title, .about-text, .experience-item, .work-card'
     );
     animatedElements.forEach(el => observer.observe(el));
 
     // Staggered animation delays
-    document.querySelectorAll('.skill-category').forEach((category, index) => {
-        category.style.transitionDelay = `${index * 0.15}s`;
-    });
-
     document.querySelectorAll('.work-card').forEach((card, index) => {
         card.style.transitionDelay = `${index * 0.15}s`;
     });
@@ -194,21 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (wantsDecorativeEffects) {
         createParticles();
         initCursorGlow();
-    }
-
-    // Animate skill tags in once the skills section is visible
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) {
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(animateSkillBars, 400);
-                    skillsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillsObserver.observe(skillsSection);
     }
 });
 
