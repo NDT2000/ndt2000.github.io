@@ -52,7 +52,8 @@
         <div class="hero-content">
             <p class="hero-eyebrow">Software Engineer · Backend & Full Stack</p>
             <h1 class="hero-title">Nayan Taori</h1>
-            <p class="hero-subtitle">Production experience at Citi · Master of Computer Science, NC State</p>
+            <p class="hero-subtitle">I build applications that keep working when things get complicated.</p>
+            <p class="work-description">From automating compliance workflows at Citi to protecting offline edits, I focus on reliable APIs, thoughtful user experiences, and practical AI.</p>
             <div class="hero-actions">
                 <a href="#work" class="hero-cta">Explore My Projects</a>
                 <a href="Nayan_Taori_Resume.pdf" class="hero-cta hero-cta-secondary" download>
@@ -75,9 +76,8 @@
                         <div class="experience-company">Expertiza — North Carolina State University</div>
                         <div class="experience-description">
                             <ul>
-                                <li>Built Docker development environments for Expertiza’s Ruby application, database, and frontend, simplifying student setup alongside university VCL environments.</li>
-                                <li>Extended GitHub Actions workflows and resolved dependency and compatibility issues, reducing failed builds by 25%.</li>
-                                <li>Implemented data anonymization so students could develop and test without exposing sensitive application data.</li>
+                                <li>Student development environments should make it easy to start contributing. At Expertiza, I worked on Docker-based setup and anonymized application data so students could develop and test safely.</li>
+                                <li>Resolving dependency conflicts and extending GitHub Actions workflows reduced failed builds by 25%.</li>
                             </ul>
                         </div>
                         <div class="work-tech">
@@ -96,8 +96,8 @@
                         <div class="experience-company">Mednet Labs — Oakland Systems, Remote</div>
                         <div class="experience-description">
                             <ul>
-                                <li>Worked in a two-engineer team modernizing patient-facing React web and React Native mobile applications, contributing to TypeScript migration and UI redesign.</li>
-                                <li>Built a React Native prototype bringing medical reports, appointment views, and multi-patient profiles into a unified patient experience.</li>
+                                <li>Healthcare information was spread across patient workflows. In a two-engineer team, I helped modernize React and React Native applications and migrate interfaces to TypeScript.</li>
+                                <li>My prototype brought medical reports, appointment views, and multi-patient profiles into one patient experience for reviewing proposed workflows.</li>
                             </ul>
                         </div>
                         <div class="work-tech">
@@ -115,9 +115,8 @@
                         <div class="experience-company">CitiCorp India Pvt. Ltd., Pune</div>
                         <div class="experience-description">
                             <ul>
-                                <li>Built an Angular dashboard and Java/Spring Boot REST microservices backed by Oracle for a client onboarding compliance platform at Citi.</li>
-                                <li>Automated background-check task assignment based on analyst throughput, cutting team task-completion time by 20%.</li>
-                                <li>Increased module-wide test coverage from 79% to 82% with JUnit and Mockito; documented implementation details and led stakeholder knowledge-transfer sessions.</li>
+                                <li>At Citi, I built Angular interfaces and Java/Spring Boot services for client onboarding compliance in a regulated banking environment.</li>
+                                <li>I replaced manual background-check task assignment with throughput-based routing, cutting team task-completion time by 20%. I also increased module-wide test coverage from 79% to 82%.</li>
                             </ul>
                         </div>
                         <div class="work-tech">
@@ -136,8 +135,8 @@
                         <div class="experience-company">Persistent Systems Ltd., Pune (Illuminati Program)</div>
                         <div class="experience-description">
                             <ul>
-                                <li>Built a Spring Boot API that generated seat-booking QR codes and stored them in Amazon S3; the feature was deployed for testing with 250+ users.</li>
-                                <li>Wrote backend tests and assessed code quality with SonarQube while contributing to sprint planning and daily standups.</li>
+                                <li>A seat-booking workflow needed a retrievable QR code for each booking. I built the Spring Boot API that generated the codes and stored them in Amazon S3.</li>
+                                <li>The feature reached testing with 250+ users ahead of a broader rollout; backend tests and SonarQube checks supported development.</li>
                             </ul>
                         </div>
                         <div class="work-tech">
@@ -163,14 +162,20 @@
                     <h3 class="work-title">
                         AI-Assisted Clinical Notes Workflow
                         <a href="https://github.com/NDT2000/AI-Assisted-Clinical-Notes-Workflow" target="_blank" rel="noopener" class="work-link">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i> View code
                         </a>
                         <span class="work-badge">2026</span>
                     </h3>
                     <div class="work-duration">Aug 2026</div>
                     <p class="work-description">
-                        Built a React/TypeScript application for reviewing and versioning clinical notes. State-driven workflows and role- and ownership-based checks govern access on the client and mock API server. Debounced autosave, an IndexedDB offline queue, and three-way conflict resolution protect edits. Cursor pagination and virtualization support browsing 100K synthetic records; Vitest and React Testing Library validate application behavior.
+                        <strong>How do you protect an edit when connectivity drops—or two people change the same note?</strong><br>
+                        I built a clinical-note review application to explore that problem. Offline saves preserve work, conflict resolution reconciles competing edits, and explicit review states make permissions easier to reason about.
                     </p>
+                    <details>
+                        <summary>Inside the engineering</summary>
+                        <p class="work-description">A state machine makes the allowed review transitions explicit. An IndexedDB write queue and three-way conflict resolution address interrupted and concurrent edits. The project uses a mock API and synthetic data; cursor pagination and virtualization support browsing 100K synthetic records.</p>
+                        <a href="https://github.com/NDT2000/AI-Assisted-Clinical-Notes-Workflow#readme" target="_blank" rel="noopener" class="work-link">Explore the implementation →</a>
+                    </details>
                     <div class="work-tech">
                         <span class="tech-tag">React</span>
                         <span class="tech-tag">TypeScript</span>
@@ -185,19 +190,29 @@
                     <h3 class="work-title">
                         Personal Finance Tracker
                         <a href="https://github.com/NDT2000/Finance-Tracker" target="_blank" rel="noopener" class="work-link">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i> View code
                         </a>
                         <span class="work-badge work-badge-progress">IN PROGRESS</span>
                     </h3>
                     <div class="work-duration">May 2026 – Present</div>
                     <p class="work-description">
-                        Built a multi-service finance application with a Spring Boot core API, FastAPI forecasting service, React frontend, and PostgreSQL database. JWT authentication and per-user data isolation protect financial records, while category-based forecasts estimate month-end spending. Docker Compose health checks and GitHub Actions support repeatable development and unit and integration testing.
+                        <strong>Can you trust your spending totals—and explore what comes next?</strong><br>
+                        Finance Tracker brings manual entries and CSV imports into one ledger, with overlap review, corrections, and refunds that avoid double counting. Currency-aware dashboards explain recorded spending; saved what-if scenarios explore future cash, investments, and repayments.
                     </p>
+                    <details>
+                        <summary>Inside the engineering</summary>
+                        <p class="work-description">Manual and imported records feed a single ledger so source rows are not counted twice. Durable import jobs preserve row outcomes and use bounded retries; ambiguous overlaps require review. Exact decimal arithmetic and separate currencies keep accounting precise. Planning scenarios stay separate from actual transactions, while a Python service supplies month-end spending forecasts.</p>
+                        <p class="work-description">The documented sample reconciles to USD 40 in net expenses and USD 100 in income, with EUR 7.50 kept separate. Re-importing the same files preserves the totals. Planning examples cover cash-reserve warnings and independently editable scenario copies. This is a local development project; saved bank accounts are labels, not live bank connections.</p>
+                        <a href="https://github.com/NDT2000/Finance-Tracker/blob/main/docs/learning-guide.md" target="_blank" rel="noopener" class="work-link">Follow the import walkthrough →</a><br>
+                        <a href="https://github.com/NDT2000/Finance-Tracker/blob/main/docs/financial-planning.md" target="_blank" rel="noopener" class="work-link">Explore the planning example →</a>
+                    </details>
                     <div class="work-tech">
                         <span class="tech-tag">Java Spring Boot</span>
                         <span class="tech-tag">Python FastAPI</span>
                         <span class="tech-tag">React</span>
                         <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Reliable CSV Imports</span>
+                        <span class="tech-tag">Financial Planning</span>
                         <span class="tech-tag">Docker Compose</span>
                         <span class="tech-tag">GitHub Actions</span>
                     </div>
@@ -207,11 +222,19 @@
                 <div class="work-card">
                     <h3 class="work-title">
                         CareerLift — AI Career Gap Analysis
-                        <a href="https://github.com/NDT2000/CareerLift" target="_blank" rel="noopener" class="work-link" aria-label="CareerLift source on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/NDT2000/CareerLift" target="_blank" rel="noopener" class="work-link" aria-label="CareerLift source on GitHub"><i class="fab fa-github" aria-hidden="true"></i> View code</a>
                         <span class="work-badge">2025</span>
                     </h3>
                     <div class="work-duration">Aug 2025</div>
-                    <p class="work-description">Built an AI career gap analysis platform end-to-end with a TypeScript/React frontend and Python Flask REST API. Owned authentication, API contracts, and technical documentation. Schema validation and retry logic improve the reliability of structured AI output; Docker and an Nginx reverse proxy support deployment on AWS.</p>
+                    <p class="work-description">
+                        <strong>How can AI career advice become specific enough to act on?</strong><br>
+                        CareerLift connects a React interface with a Python API for career gap analysis. I owned the frontend, API contracts, and authentication, with schema validation and retries to keep structured AI responses usable by the application.
+                    </p>
+                    <details>
+                        <summary>Inside the engineering</summary>
+                        <p class="work-description">An AI response needs a predictable structure before the interface can use it. Schema validation checks that contract, and retry logic handles unsuccessful responses. Docker and an Nginx reverse proxy support AWS deployment of the React and Flask application.</p>
+                        <a href="https://github.com/NDT2000/CareerLift#readme" target="_blank" rel="noopener" class="work-link">Explore the implementation →</a>
+                    </details>
                     <div class="work-tech">
                         <span class="tech-tag">React</span>
                         <span class="tech-tag">TypeScript</span>
@@ -229,7 +252,8 @@
                     </h3>
                     <div class="work-duration">2026</div>
                     <p class="work-description">
-                        Built a document retrieval pipeline using ChromaDB, sentence-transformers, and the Groq API. Semantic search supplies relevant document context for generated answers, with retrieval parameters tuned against measured output quality.
+                        <strong>Give an answer a useful source.</strong><br>
+                        This document-retrieval project explores how semantic search can ground generated answers in relevant context. I combined ChromaDB, sentence-transformers, and Groq inference, and tuned retrieval against output quality.
                     </p>
                     <div class="work-tech">
                         <span class="tech-tag">Python</span>
@@ -244,12 +268,13 @@
                     <h3 class="work-title">
                         Personal Finance Management System v1
                         <a href="https://github.com/NDT2000/Personal-Finance" target="_blank" rel="noopener" class="work-link">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i> View code
                         </a>
                     </h3>
                     <div class="work-duration">2023</div>
                     <p class="work-description">
-                        Built a full-stack finance application with React, Node.js, and MySQL. TF-IDF transaction categorization and regression-based spending forecasts turn transaction history into actionable dashboards, with Chart.js visualizations.
+                        <strong>Where my finance projects started.</strong><br>
+                        My first finance application combined transaction categorization, spending forecasts, and visual dashboards. The newer Finance Tracker builds on that interest with more emphasis on reliable imports, exact accounting, and financial planning.
                     </p>
                     <div class="work-tech">
                         <span class="tech-tag">React 18</span>
@@ -276,8 +301,9 @@
                 </div>
                 <div class="about-text">
                     <h3>Software Engineer · Backend & Full Stack</h3>
-                    <p>I'm a software engineer with one year of production experience at Citi and a Master of Computer Science from NC State University (GPA: 3.8/4.0, May 2026). I build backend services with Java/Spring Boot and Python, and web applications with React and TypeScript.</p>
-                    <p>My work spans banking compliance, healthcare interfaces, and open-source development infrastructure. In personal projects, I focus on reliable AI workflows, secure APIs, and resilient editing experiences. I'm seeking full-time backend and full stack roles.</p>
+                    <p>I enjoy the parts of software engineering where correctness meets user experience: clear permissions, reliable saves, useful error handling, and APIs people can depend on. Banking, healthcare, and open-source infrastructure have given me different ways to explore those problems.</p>
+                    <p>My personal projects give me room to follow a problem beyond the happy path: what happens when data is imported twice, an AI response breaks its contract, or an edit arrives after someone else's? I work primarily with Java/Spring Boot, Python, React, and TypeScript, and use these projects to make those decisions concrete.</p>
+                    <p>I have one year of production experience at Citi and a Master of Computer Science from NC State (GPA: 3.8/4.0, May 2026). I'm seeking full-time backend and full stack roles.</p>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fab fa-linkedin"></i>
@@ -301,7 +327,7 @@
     <footer class="footer" id="contact">
         <div class="container">
             <h2 class="footer-title">Let's Connect</h2>
-            <p class="footer-subtitle">Let’s talk about full-time backend and full stack software engineering roles.</p>
+            <p class="footer-subtitle">Building something that needs reliable APIs or a thoughtful user experience? Let’s talk. I’m seeking full-time backend and full stack roles.</p>
             <div class="social-links">
                 <a href="mailto:nayantaori14@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://linkedin.com/in/nayan-taori" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
