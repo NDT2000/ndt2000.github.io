@@ -49,14 +49,14 @@ function openMobileMenu() {
     if (!navLinks || !mobileMenuBtn) return;
     navLinks.classList.add('active');
     mobileMenuBtn.setAttribute('aria-expanded', 'true');
-    mobileMenuBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+    mobileMenuBtn.textContent = 'Close';
 }
 
 function closeMobileMenu() {
     if (!navLinks || !mobileMenuBtn) return;
     navLinks.classList.remove('active');
     mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    mobileMenuBtn.textContent = 'Menu';
 }
 
 function toggleMobileMenu() {
