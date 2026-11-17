@@ -103,7 +103,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(45, 212, 191, 0.6);
+            background: var(--particle-color);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -132,7 +132,7 @@ document.addEventListener('click', (e) => {
     ripple.style.cssText = `
         position: absolute;
         border-radius: 50%;
-        background: rgba(45, 212, 191, 0.5);
+        background: var(--ripple-color);
         transform: scale(0);
         animation: ripple 0.6s linear;
         left: ${e.clientX - 25}px;
