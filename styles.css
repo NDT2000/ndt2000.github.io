@@ -5,22 +5,22 @@
 }
 
 :root {
-    /* Color Hunt: #290044 / #500071 / #8a2a78 / #eee3b0.
-       Keep purple in the surfaces and use cream for readable accents. */
-    --bg: #1b0d24;
-    --bg-alt: #21102e;
-    --surface: rgba(41, 0, 68, 0.28);
-    --surface-hover: rgba(138, 42, 120, 0.14);
-    --border: rgba(238, 227, 176, 0.12);
-    --text: #f4f0e7;
-    --text-muted: #c2b6c5;
-    --accent: #eee3b0;
-    --accent-soft: rgba(238, 227, 176, 0.12);
-    --accent-2: #eee3b0;
-    --accent-2-soft: rgba(138, 42, 120, 0.24);
-    --gradient: linear-gradient(135deg, #eee3b0, #e2d6ad);
-    --particle-color: rgba(238, 227, 176, 0.3);
-    --ripple-color: rgba(138, 42, 120, 0.22);
+    /* Color Hunt: #202734 / #36415a / #b7d894 / #e0f8c7.
+       Neutral text and slate surfaces keep sage accents understated. */
+    --bg: #202734;
+    --bg-alt: #283142;
+    --surface: rgba(54, 65, 90, 0.48);
+    --surface-hover: rgba(54, 65, 90, 0.72);
+    --border: rgba(184, 193, 206, 0.14);
+    --text: #eef1f4;
+    --text-muted: #b8c1ce;
+    --accent: #b7d894;
+    --accent-soft: rgba(184, 193, 206, 0.14);
+    --accent-2: #e0f8c7;
+    --accent-2-soft: rgba(183, 216, 148, 0.1);
+    --gradient: linear-gradient(135deg, #b7d894, #b7d894);
+    --particle-color: rgba(183, 216, 148, 0.25);
+    --ripple-color: rgba(183, 216, 148, 0.16);
     --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
     --radius: 14px;
 }
@@ -65,7 +65,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(27, 13, 36, 0.94);
+    background: rgba(32, 39, 52, 0.94);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
@@ -75,7 +75,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(27, 13, 36, 0.98);
+    background: rgba(32, 39, 52, 0.98);
     border-bottom-color: var(--border);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
@@ -91,7 +91,7 @@ body {
     font-size: 1.4rem;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
-    background: var(--gradient);
+    background: var(--text);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -182,8 +182,8 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(80, 0, 113, 0.2), transparent 55%),
-                radial-gradient(circle at 75% 75%, rgba(138, 42, 120, 0.07), transparent 50%);
+    background: radial-gradient(circle at 30% 20%, rgba(54, 65, 90, 0.3), transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(183, 216, 148, 0.025), transparent 50%);
     animation: pulse 6s ease-in-out infinite;
 }
 
@@ -256,7 +256,7 @@ body {
     gap: 0.5rem;
     padding: 14px 28px;
     background: var(--gradient);
-    color: #290044;
+    color: #202734;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
@@ -273,8 +273,9 @@ body {
 }
 
 .hero-cta:hover {
+    background: var(--accent-2);
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(138, 42, 120, 0.2);
+    box-shadow: 0 10px 30px rgba(183, 216, 148, 0.12);
 }
 
 .hero-cta-secondary:hover {
@@ -348,7 +349,7 @@ body {
     font-family: 'Inter', sans-serif;
     text-align: center;
     margin-bottom: 3rem;
-    background: var(--gradient);
+    background: var(--text);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -650,7 +651,7 @@ body {
 }
 
 .work-card-featured {
-    border-color: rgba(238, 227, 176, 0.25);
+    border-color: rgba(183, 216, 148, 0.28);
 }
 
 .work-title {
@@ -715,13 +716,13 @@ body {
 
 .tech-tag {
     padding: 0.3rem 0.75rem;
-    background: rgba(138, 42, 120, 0.12);
+    background: rgba(54, 65, 90, 0.55);
     border-radius: 15px;
     font-size: 0.78rem;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
     letter-spacing: -0.01em;
-    border: 1px solid rgba(238, 227, 176, 0.16);
+    border: 1px solid rgba(184, 193, 206, 0.18);
     color: var(--accent);
 }
 
@@ -737,7 +738,7 @@ body {
     font-size: clamp(1.5rem, 3.5vw, 2rem);
     font-weight: 700;
     margin-bottom: 0.75rem;
-    background: var(--gradient);
+    background: var(--text);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -774,9 +775,9 @@ body {
 
 .social-links a:hover {
     transform: translateY(-4px);
-    background: var(--gradient);
-    color: #290044;
-    box-shadow: 0 10px 20px rgba(138, 42, 120, 0.2);
+    background: var(--accent-2);
+    color: #202734;
+    box-shadow: 0 10px 20px rgba(183, 216, 148, 0.12);
     border-color: transparent;
 }
 
@@ -794,12 +795,12 @@ code, pre, .code {
 
 /* Improved text selection */
 ::selection {
-    background: rgba(138, 42, 120, 0.2);
+    background: rgba(183, 216, 148, 0.12);
     color: var(--text);
 }
 
 ::-moz-selection {
-    background: rgba(138, 42, 120, 0.2);
+    background: rgba(183, 216, 148, 0.12);
     color: var(--text);
 }
 
@@ -852,7 +853,7 @@ a:focus-visible, button:focus-visible {
     position: fixed;
     width: 20px;
     height: 20px;
-    background: radial-gradient(circle, rgba(138, 42, 120, 0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(183, 216, 148, 0.25), transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -909,7 +910,7 @@ a:focus-visible, button:focus-visible {
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        background: rgba(27, 13, 36, 0.98);
+        background: rgba(32, 39, 52, 0.98);
         border: 1px solid var(--border);
         border-radius: var(--radius);
         padding: 0.5rem;
