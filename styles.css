@@ -1209,24 +1209,9 @@ article[id] { scroll-margin-top:32px; }
 .rally-ball { fill:var(--accent); transform:translate(45px,43px); }
 .pass-point { fill:var(--muted); }
 .football-ball { fill:var(--text); stroke:var(--bg); stroke-width:1; transform:translate(24px,39px); }
-.sport-motifs.is-playing .rally-ball { animation:rally 2400ms var(--curve) 1; }
-.sport-motifs.is-playing .football-ball { animation:pass 2400ms var(--curve) 1; }
 .motion-replay { color:var(--muted); background:none; border:0; padding:8px 12px; border-radius:8px; }
 .motion-replay:hover { color:var(--accent); background:var(--panel); }
 .motion-replay:active { transform:scale(.98); }
-@keyframes rally {
-  0%,100% { transform:translate(45px,43px); }
-  20% { transform:translate(65px,16px); }
-  40% { transform:translate(83px,39px); }
-  60% { transform:translate(105px,16px); }
-  80% { transform:translate(126px,39px); }
-}
-@keyframes pass {
-  0%,100% { transform:translate(24px,39px) rotate(0deg); }
-  25% { transform:translate(60px,24px) rotate(100deg); }
-  50% { transform:translate(98px,26px) rotate(200deg); }
-  75% { transform:translate(136px,39px) rotate(300deg); }
-}
 @media(max-width:1100px) {
   .hero { gap:32px; }
   .project-preview { padding:16px; }
@@ -1266,6 +1251,13 @@ article[id] { scroll-margin-top:32px; }
   .beyond-section { margin-bottom:48px; padding-block:48px; }
   .sport-motifs { width:100%; gap:16px; }
 }
+
+.flow-signal { fill:var(--accent-hover); opacity:0; pointer-events:none; }
+.system-caption-row { display:flex; align-items:center; flex-wrap:wrap; gap:8px 16px; margin-top:16px; }
+.system-caption-row .system-caption { margin:0; flex:1; }
+.diagram-replay { padding:8px 12px; border:0; border-radius:8px; background:transparent; color:var(--accent); white-space:nowrap; }
+.diagram-replay:hover { color:var(--accent-hover); background:var(--bg); }
+.diagram-replay:active { transform:scale(.98); }
 @media(prefers-reduced-motion:reduce) {
-  .sport-motifs.is-playing .rally-ball,.sport-motifs.is-playing .football-ball { animation:none; }
+  .motion-replay,.diagram-replay { display:none; }
 }

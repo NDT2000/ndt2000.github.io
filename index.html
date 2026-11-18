@@ -14,8 +14,11 @@
   <link rel="canonical" href="https://ndt2000.github.io/">
   <meta name="theme-color" content="#202734">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=1615f867b4b6">
-  <script src="script.js?v=b43854a0ebcc" defer></script>
+  <link rel="stylesheet" href="styles.css?v=e3bb0ae37720">
+  <script src="assets/vendor/gsap-3.15.1/gsap.min.js" defer></script>
+  <script src="assets/vendor/gsap-3.15.1/MotionPathPlugin.min.js" defer></script>
+  <script src="assets/vendor/gsap-3.15.1/CustomEase.min.js" defer></script>
+  <script src="script.js?v=605b6cc6731c" defer></script>
 </head>
 <body>
   <a class="skip-link button-md" href="#main">Skip to content</a>
@@ -46,16 +49,17 @@
           <title id="system-map-title">A workflow with an explicit recovery path</title>
           <desc id="system-map-description">Input moves through validation to a committed result. An unsuccessful validation takes a recovery and retry path back into validation.</desc>
           <defs><marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>
-          <g class="map-lines" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#flow-arrow)"><path d="M140 67h40"/><path d="M330 67h40"/><path d="M278 96v45"/><path d="M202 170h-40q-12 0-12-12v-34q0-12 12-12h52V98"/></g>
+          <g class="map-lines" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#flow-arrow)"><path id="flow-input" d="M140 67h40"/><path id="flow-commit" d="M330 67h40"/><path id="flow-recover" d="M278 96v45"/><path id="flow-retry" d="M202 170h-40q-12 0-12-12v-34q0-12 12-12h52V98"/></g>
           <rect class="map-node" x="0.75" y="36" width="139" height="60" rx="8"/>
           <rect class="map-node" x="180" y="36" width="150" height="60" rx="8"/>
           <rect class="map-node" x="370" y="36" width="149" height="60" rx="8"/>
           <rect class="map-node recovery-node" x="202" y="144" width="200" height="60" rx="8"/>
           <g class="map-symbol" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 54h14l6 6v19H23zm14 0v8h6M28 68h10m-10 5h10"/><circle cx="209" cy="66" r="11"/><path d="m204 66 4 4 7-8"/><ellipse cx="399" cy="58" rx="10" ry="4"/><path d="M389 58v17c0 6 20 6 20 0V58m-20 8c0 6 20 6 20 0"/><path d="M228 166a10 10 0 1 0 3 12m0-18v8h-8"/></g>
           <g class="map-label title-3"><text x="54" y="72">Input</text><text x="231" y="72">Validate</text><text x="422" y="72">Commit</text><text x="252" y="180">Recover & retry</text></g>
+          <circle class="flow-signal" r="4" cx="0" cy="0" aria-hidden="true"/>
         </svg>
         <div class="assurance-row caption-1"><span><span aria-hidden="true">✓</span> State</span><span><span aria-hidden="true">✓</span> Version</span><span><span aria-hidden="true">✓</span> Outcome</span></div>
-        <p class="body-6 system-caption">Clear state. Safe recovery. Visible outcomes.</p>
+        <div class="system-caption-row"><p class="body-6 system-caption">Clear state. Safe recovery. Visible outcomes.</p><button class="diagram-replay button-sm" type="button" hidden>Replay flow</button></div>
       </aside>
       <div class="hero-projects" aria-label="Explore three engineering projects">
         <a class="project-preview" href="#clinical"><span class="preview-index caption-3">01 / Resilient collaboration</span><h2 class="heading-6">Clinical Notes <span aria-hidden="true"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span></h2><p class="body-6">Protect edits. Preserve history.</p><div class="preview-flow caption-4"><span>Review</span><span class="flow-separator" aria-hidden="true"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span><span class="flow-focus">Approve</span><span class="flow-separator" aria-hidden="true"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span><span>Lock</span></div></a>
