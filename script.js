@@ -31,18 +31,6 @@ document.addEventListener('keydown', event => {
 });
 mobile.addEventListener('change', () => closeMenu());
 
-// The import interaction illustrates a documented invariant; no backend is called.
-let importCount = 1;
-const replay = document.querySelector('#replay-import');
-if (replay) replay.disabled = false;
-replay?.addEventListener('click', () => {
-  importCount += 1;
-  document.querySelector('#replay-status').textContent = `Import ${importCount}: already recorded. Totals unchanged.`;
-  const board = document.querySelector('.workflow-board');
-  board.classList.remove('is-replayed');
-  requestAnimationFrame(() => requestAnimationFrame(() => board.classList.add('is-replayed')));
-});
-
 if ('IntersectionObserver' in window) {
   // Observe first, then opt into animation so unsupported browsers show all content.
   const revealObserver = new IntersectionObserver(entries => {
