@@ -61,6 +61,14 @@ Edit text and project links in `index.html`. Use the existing card and section c
 
 When updating the resume, replace `Nayan_Taori_Resume.pdf` or update every download link if the filename changes. Keep the location, contact details, page title, and meta description consistent with the visible content.
 
+After editing `styles.css` or `script.js`, refresh their content-based cache keys:
+
+```bash
+python3 scripts/version-assets.py
+```
+
+This updates asset URLs in all HTML pages so browsers do not reuse a previous design’s CSS or JavaScript with new markup. It needs only Python 3 and does not build or install anything. Commit the updated HTML references together with the asset changes.
+
 Before publishing:
 
 - Check desktop and narrow mobile layouts.
