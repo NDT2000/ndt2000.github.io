@@ -6,13 +6,13 @@ My software engineering portfolio, built around a vision: making complex workflo
 
 ## What's inside
 
-- **Vision:** a focused introduction and an engineering lens spanning resilient collaboration, trustworthy data, and explicit decisions.
+- **Vision:** an engineering-led introduction, an explicit recovery-path diagram, and three balanced project previews.
 - **Selected work:** substantial clinical and finance case studies, followed by CareerLift, connecting architecture to the problems each project solves.
 - **Approach:** the invariants, recovery paths, and observable outcomes behind reliable workflows.
 - **About:** personal background, compact experience notes, and the perspective behind my work.
 - **Contact:** direct email and professional links.
 
-The hero links to three engineering themes rather than promoting one application. Clinical Notes and Finance Tracker each have a substantial case study; diagrams explain architecture without connecting to a project backend.
+The hero presents a general input, validation, commit, and recovery pattern rather than promoting one application. Three preview cards link to the full case studies. Diagrams explain architecture without connecting to a project backend. A small “Beyond the keyboard” section adds a personal note about table tennis and football, with decorative animations that play once on entry, offer a replay button, and respect reduced-motion preferences.
 
 ### Featured projects
 
@@ -47,7 +47,7 @@ Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. I
 | --- | --- |
 | `index.html` | Vision, workflow illustration, case studies, background, and contact. |
 | `styles.css` | Dark theme, responsive layouts, and animation styles. |
-| `script.js` | Accessible mobile navigation, section navigation, section reveals, and word reveal. |
+| `script.js` | Accessible mobile navigation, section navigation, section reveals, word reveal, and small sports animations. |
 | `assets/fonts/` | Self-hosted Manrope weights and font license. |
 | `favicon.svg` | Portfolio monogram. |
 | `404.html` | Custom GitHub Pages missing-page response. |
@@ -73,7 +73,8 @@ Before publishing:
 
 - Check desktop and narrow mobile layouts.
 - Open and close the mobile menu; follow the navigation and project links.
-- Follow each engineering-lens link to its corresponding case study.
+- Follow each project preview to its corresponding case study.
+- Check that sports accents play once, replay on request, and stop when reduced motion is enabled.
 - Expand case study and experience notes; check keyboard focus and Escape in the mobile menu.
 - Check reduced motion and JavaScript-disabled navigation.
 - Verify the profile image and every resume download.

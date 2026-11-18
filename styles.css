@@ -1164,3 +1164,108 @@ h4 { margin:0; }
 
 article[id] { scroll-margin-top:32px; }
 .board-footnote { color:var(--muted); margin-top:16px; }
+
+/* Engineering leads; sport is a small personal signature. */
+.hero { padding-top:144px; gap:32px 48px; }
+.hero-support { display:block; margin-top:8px; }
+.systems-board>.eyebrow { margin-bottom:16px; }
+.systems-map { display:block; width:100%; height:auto; overflow:visible; }
+.map-node { fill:var(--panel); stroke:var(--muted); stroke-width:1.5; }
+.recovery-node { stroke:var(--accent); }
+.map-lines { color:var(--muted); }
+.map-symbol { color:var(--accent); }
+.map-label { fill:var(--text); }
+.assurance-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:16px 0; border-block:1px solid var(--border); }
+.assurance-row>span { display:flex; align-items:center; justify-content:center; gap:8px; }
+.assurance-row>span>span { color:var(--accent); }
+.system-caption { color:var(--muted); margin-top:16px; }
+.hero-projects { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:16px; }
+.project-preview { display:block; min-width:0; padding:24px; background:var(--panel); border:1px solid var(--border); border-radius:16px; }
+.project-preview:hover { color:var(--text); background:var(--slate); transform:translateY(-4px); }
+.project-preview:active { transform:translateY(1px); }
+.preview-index { display:block; color:var(--accent); margin-bottom:16px; }
+.project-preview h2 { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.project-preview h2>span { color:var(--accent); }
+.project-preview p { color:var(--muted); margin-top:8px; }
+.preview-flow { display:flex; align-items:center; justify-content:space-between; gap:4px; margin-top:24px; }
+.preview-flow>span:not(.flow-separator) { padding:8px; background:var(--bg); border:1px solid var(--border); border-radius:8px; text-align:center; }
+.preview-flow>.flow-focus { color:var(--accent); border-color:var(--accent)!important; }
+.flow-separator { color:var(--muted); }
+.flow-separator .icon { width:12px; height:12px; }
+.offcourt-teaser { display:flex; align-items:center; gap:24px; grid-column:1/-1; padding-block:24px; border-block:1px solid var(--border); }
+.offcourt-teaser>.caption-2 { color:var(--muted); }
+.teaser-sports { display:flex; align-items:center; gap:24px; margin-left:auto; color:var(--accent); }
+.teaser-sports>.icon { width:24px; height:24px; }
+.beyond-section { display:grid; grid-template-columns:1.5fr 1fr; align-items:center; gap:64px; padding-block:64px; margin-bottom:64px; border-block:1px solid var(--border); }
+.beyond-copy h2 { margin-block:16px 24px; }
+.beyond-copy>.body-3 { color:var(--muted); max-width:560px; }
+.sports-corner { display:flex; flex-direction:column; align-items:center; gap:16px; }
+.sport-motifs { display:flex; justify-content:center; gap:32px; width:100%; }
+.sport-motif { display:flex; flex-direction:column; align-items:center; gap:12px; color:var(--muted); min-width:0; }
+.sport-motif>svg { max-width:100%; height:auto; overflow:visible; }
+.sport-trail { stroke:var(--muted); stroke-width:1; stroke-dasharray:3 5; opacity:.6; }
+.paddle { stroke:var(--accent); stroke-width:1.5; }
+.paddle>ellipse { fill:var(--slate); }
+.rally-ball { fill:var(--accent); transform:translate(45px,43px); }
+.pass-point { fill:var(--muted); }
+.football-ball { fill:var(--text); stroke:var(--bg); stroke-width:1; transform:translate(24px,39px); }
+.sport-motifs.is-playing .rally-ball { animation:rally 2400ms var(--curve) 1; }
+.sport-motifs.is-playing .football-ball { animation:pass 2400ms var(--curve) 1; }
+.motion-replay { color:var(--muted); background:none; border:0; padding:8px 12px; border-radius:8px; }
+.motion-replay:hover { color:var(--accent); background:var(--panel); }
+.motion-replay:active { transform:scale(.98); }
+@keyframes rally {
+  0%,100% { transform:translate(45px,43px); }
+  20% { transform:translate(65px,16px); }
+  40% { transform:translate(83px,39px); }
+  60% { transform:translate(105px,16px); }
+  80% { transform:translate(126px,39px); }
+}
+@keyframes pass {
+  0%,100% { transform:translate(24px,39px) rotate(0deg); }
+  25% { transform:translate(60px,24px) rotate(100deg); }
+  50% { transform:translate(98px,26px) rotate(200deg); }
+  75% { transform:translate(136px,39px) rotate(300deg); }
+}
+@media(max-width:1100px) {
+  .hero { gap:32px; }
+  .project-preview { padding:16px; }
+  .preview-flow>span:not(.flow-separator) { padding:8px 4px; }
+  .beyond-section { gap:32px; }
+  .sport-motifs { gap:16px; }
+}
+@media(max-width:900px) and (min-width:801px) {
+  .hero-projects { grid-template-columns:1fr; }
+  .project-preview { display:grid; grid-template-columns:1fr 1fr; gap:0 24px; }
+  .project-preview .preview-index { grid-column:1; }
+  .project-preview h2,.project-preview p { grid-column:1; }
+  .project-preview .preview-flow { grid-column:2; grid-row:1/4; margin-top:0; }
+}
+@media(max-width:800px) {
+  .hero { padding-top:128px; }
+  .hero-projects { grid-template-columns:1fr; }
+  .project-preview { display:grid; grid-template-columns:1fr 1fr; gap:0 24px; padding:24px; }
+  .project-preview .preview-index,.project-preview h2,.project-preview p { grid-column:1; }
+  .project-preview .preview-flow { grid-column:2; grid-row:1/4; margin-top:0; }
+  .beyond-section { grid-template-columns:1fr; gap:32px; }
+  .sports-corner { align-items:flex-start; }
+  .sport-motifs { justify-content:flex-start; width:auto; gap:32px; }
+  .offcourt-teaser { flex-wrap:wrap; gap:16px; }
+}
+@media(max-width:600px) {
+  .hero { padding-top:128px; gap:24px; }
+  .hero-copy>.eyebrow { font-size:12px; line-height:16px; }
+  .project-preview { display:block; padding:24px; }
+  .project-preview .preview-flow { margin-top:24px; }
+  .preview-flow>span:not(.flow-separator) { padding:8px 12px; }
+  .offcourt-teaser>.eyebrow { width:100%; }
+  .offcourt-teaser>.caption-2 { max-width:200px; }
+  .teaser-sports { gap:16px; }
+  .teaser-sports>.icon { width:16px; height:16px; }
+  .assurance-row { gap:8px; }
+  .beyond-section { margin-bottom:48px; padding-block:48px; }
+  .sport-motifs { width:100%; gap:16px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .sport-motifs.is-playing .rally-ball,.sport-motifs.is-playing .football-ball { animation:none; }
+}
