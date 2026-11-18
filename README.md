@@ -9,7 +9,7 @@ My software engineering portfolio, built around a vision: making complex workflo
 - **Vision:** a focused introduction and an engineering lens spanning resilient collaboration, trustworthy data, and explicit decisions.
 - **Selected work:** substantial clinical and finance case studies, followed by CareerLift, connecting architecture to the problems each project solves.
 - **Approach:** the invariants, recovery paths, and observable outcomes behind reliable workflows.
-- **About:** personal background, compact experience notes, resume, and opportunities.
+- **About:** personal background, compact experience notes, and the perspective behind my work.
 - **Contact:** direct email and professional links.
 
 The hero links to three engineering themes rather than promoting one application. Clinical Notes and Finance Tracker each have a substantial case study; diagrams explain architecture without connecting to a project backend.
@@ -95,4 +95,4 @@ Check **Settings → Pages** for the repository's active publishing source. For 
 
 ## Contact
 
-For full-time backend and full stack opportunities, email **[nayantaori14@gmail.com](mailto:nayantaori14@gmail.com)**.
+To discuss reliable workflows, project ideas, or the engineering decisions behind this work, email **[nayantaori14@gmail.com](mailto:nayantaori14@gmail.com)**.
