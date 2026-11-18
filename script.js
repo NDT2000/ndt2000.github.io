@@ -94,31 +94,100 @@ reducedMotion.addEventListener('change', () => {
   }
 });
 
-// Decorative sport accents play once on entry, never following the cursor.
-const sportMotifs = document.querySelector('.sport-motifs');
-const motionReplay = document.querySelector('.motion-replay');
-if (sportMotifs && motionReplay) {
-  function updateMotionControl() {
-    motionReplay.hidden = reducedMotion.matches;
-    if (reducedMotion.matches) sportMotifs.classList.remove('is-playing');
-  }
-  function playSports() {
-    if (reducedMotion.matches) return;
-    sportMotifs.classList.remove('is-playing');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (!reducedMotion.matches) sportMotifs.classList.add('is-playing');
-    }));
-  }
-  motionReplay.addEventListener('click', playSports);
-  reducedMotion.addEventListener('change', updateMotionControl);
-  updateMotionControl();
-  if ('IntersectionObserver' in window) {
-    const sportsObserver = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        playSports();
-        sportsObserver.disconnect();
+// GSAP is a progressive enhancement: navigation and static graphics work without it.
+if (window.gsap && window.MotionPathPlugin && window.CustomEase) {
+  const { gsap, MotionPathPlugin, CustomEase } = window;
+  gsap.registerPlugin(MotionPathPlugin, CustomEase);
+  CustomEase.create('portfolio', '0.22,1,0.36,1');
+
+  const motion = gsap.matchMedia();
+  motion.add('(prefers-reduced-motion: no-preference)', () => {
+    const observers = [];
+    const removeListeners = [];
+
+    function playOnEntry(element, timeline, threshold = .3) {
+      if (!element) return;
+      if (!('IntersectionObserver' in window)) return;
+      const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          timeline.restart();
+          observer.disconnect();
+        }
+      }, { threshold });
+      observer.observe(element);
+      observers.push(observer);
+    }
+
+    function addReplay(selector, timeline) {
+      const button = document.querySelector(selector);
+      if (!button) return;
+      const replay = () => timeline.restart();
+      button.hidden = false;
+      button.addEventListener('click', replay);
+      removeListeners.push(() => {
+        button.removeEventListener('click', replay);
+        button.hidden = true;
+      });
+    }
+
+    const diagram = document.querySelector('.systems-map');
+    if (diagram) {
+      const signal = diagram.querySelector('.flow-signal');
+      const recovery = diagram.querySelector('.recovery-node');
+      const sequence = gsap.timeline({ id: 'portfolio-workflow', paused: true, defaults: { ease: 'portfolio' } });
+      sequence.set(signal, { opacity: 0 });
+      function traverse(selector, duration) {
+        const path = diagram.querySelector(selector);
+        const point = path.getPointAtLength(0);
+        sequence.set(signal, { x: point.x, y: point.y })
+          .to(signal, { opacity: 1, duration: .2 })
+          .to(signal, { motionPath: { path }, duration })
+          .to(signal, { opacity: 0, duration: .2 });
       }
-    }, { threshold: .5 });
-    sportsObserver.observe(sportMotifs);
-  }
+      traverse('#flow-input', .45);
+      traverse('#flow-recover', .4);
+      sequence.fromTo(recovery, { opacity: .5 }, { opacity: 1, duration: .4 });
+      traverse('#flow-retry', .7);
+      traverse('#flow-commit', .45);
+      playOnEntry(diagram, sequence, .5);
+      addReplay('.diagram-replay', sequence);
+    }
+
+    document.querySelectorAll('.project-preview').forEach((preview, index) => {
+      const graphics = [...preview.querySelectorAll('.preview-flow>span')];
+      const sequence = gsap.timeline({ id: `portfolio-preview-${index}`, paused: true });
+      sequence.fromTo(graphics,
+        { opacity: .55, y: 8 },
+        { opacity: 1, y: 0, duration: .5, stagger: .1, ease: 'portfolio', immediateRender: false });
+      playOnEntry(preview, sequence);
+    });
+
+    const sports = document.querySelector('.sport-motifs');
+    if (sports) {
+      const ball = sports.querySelector('.rally-ball');
+      const paddle = sports.querySelector('.paddle');
+      const football = sports.querySelector('.football-ball');
+      const rallyPath = sports.querySelector('.rally-art .sport-trail');
+      const passPath = sports.querySelector('.football-art .sport-trail');
+      const sequence = gsap.timeline({ id: 'portfolio-sports', paused: true, defaults: { ease: 'portfolio' } });
+      sequence.set(ball, { x: 45, y: 43 })
+        .set(football, { x: 24, y: 39, rotation: 0, svgOrigin: '0 0' })
+        .set(paddle, { rotation: 0, svgOrigin: '18 39' })
+        .to(paddle, { rotation: -8, duration: .2 }, 0)
+        .to(paddle, { rotation: 5, duration: .25 }, .2)
+        .to(paddle, { rotation: 0, duration: .4 }, .45)
+        .to(ball, { motionPath: { path: rallyPath }, duration: 1.2 }, .2)
+        .to(ball, { motionPath: { path: rallyPath, start: 1, end: 0 }, duration: 1.2 }, 1.4)
+        .to(football, { motionPath: { path: passPath }, rotation: 300, duration: 1.2 }, .2)
+        .to(football, { motionPath: { path: passPath, start: 1, end: 0 }, rotation: 0, duration: 1.2 }, 1.4);
+      playOnEntry(sports, sequence, .5);
+      addReplay('.motion-replay', sequence);
+    }
+
+    // matchMedia reverts inline animation styles when motion is reduced.
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+      removeListeners.forEach(remove => remove());
+    };
+  });
 }

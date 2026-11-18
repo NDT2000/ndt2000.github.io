@@ -12,7 +12,7 @@ My software engineering portfolio, built around a vision: making complex workflo
 - **About:** personal background, compact experience notes, and the perspective behind my work.
 - **Contact:** direct email and professional links.
 
-The hero presents a general input, validation, commit, and recovery pattern rather than promoting one application. Three preview cards link to the full case studies. Diagrams explain architecture without connecting to a project backend. A small “Beyond the keyboard” section adds a personal note about table tennis and football, with decorative animations that play once on entry, offer a replay button, and respect reduced-motion preferences.
+The hero presents a general input, validation, commit, and recovery pattern rather than promoting one application. Three preview cards link to the full case studies. Diagrams explain architecture without connecting to a project backend. A small “Beyond the keyboard” section adds a personal note about table tennis and football, with GSAP animations that play once on entry, offer a replay button, and respect reduced-motion preferences.
 
 ### Featured projects
 
@@ -39,7 +39,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Open the local server in your browser to inspect the site. Stop it with `Ctrl+C`. Changes appear after refreshing; the server does not provide automatic reload.
 
-Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. Icons are inline SVG; no font CDN, icon library, or external runtime request is required.
+Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. Icons are inline SVG. GSAP 3.15.1, MotionPathPlugin, and CustomEase are served locally; no external runtime request is required. The pinned npm tarball was verified against its SHA-512 integrity value. See `assets/vendor/gsap-3.15.1/NOTICE.md` for source and license details. GSAP uses its standard no-charge license, not MIT.
 
 ## Repository structure
 
@@ -47,7 +47,8 @@ Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. I
 | --- | --- |
 | `index.html` | Vision, workflow illustration, case studies, background, and contact. |
 | `styles.css` | Dark theme, responsive layouts, and animation styles. |
-| `script.js` | Accessible mobile navigation, section navigation, section reveals, word reveal, and small sports animations. |
+| `script.js` | Accessible mobile navigation, section navigation, section reveals, word reveal, and GSAP timelines for the hero, previews, and sports icons. |
+| `assets/vendor/gsap-3.15.1/` | Locally served GSAP core, MotionPathPlugin, CustomEase, and upstream notices. |
 | `assets/fonts/` | Self-hosted Manrope weights and font license. |
 | `favicon.svg` | Portfolio monogram. |
 | `404.html` | Custom GitHub Pages missing-page response. |
@@ -68,6 +69,8 @@ python3 scripts/version-assets.py
 ```
 
 This updates asset URLs in all HTML pages so browsers do not reuse a previous design’s CSS or JavaScript with new markup. It needs only Python 3 and does not build or install anything. Commit the updated HTML references together with the asset changes.
+
+Animations are a progressive enhancement. The hero briefly traces input, validation, recovery, retry, and commit; preview graphics enter once; the sports timeline coordinates a paddle response, two ball bounces, and a curved football pass. Existing IntersectionObserver triggers start GSAP timelines without adding a separate scroll library. Static graphics and navigation remain available if GSAP is unavailable or motion is reduced.
 
 Before publishing:
 
