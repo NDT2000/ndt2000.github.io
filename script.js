@@ -93,3 +93,32 @@ reducedMotion.addEventListener('change', () => {
     document.querySelectorAll('.word-reveal span').forEach(word => word.classList.add('is-lit'));
   }
 });
+
+// Decorative sport accents play once on entry, never following the cursor.
+const sportMotifs = document.querySelector('.sport-motifs');
+const motionReplay = document.querySelector('.motion-replay');
+if (sportMotifs && motionReplay) {
+  function updateMotionControl() {
+    motionReplay.hidden = reducedMotion.matches;
+    if (reducedMotion.matches) sportMotifs.classList.remove('is-playing');
+  }
+  function playSports() {
+    if (reducedMotion.matches) return;
+    sportMotifs.classList.remove('is-playing');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (!reducedMotion.matches) sportMotifs.classList.add('is-playing');
+    }));
+  }
+  motionReplay.addEventListener('click', playSports);
+  reducedMotion.addEventListener('change', updateMotionControl);
+  updateMotionControl();
+  if ('IntersectionObserver' in window) {
+    const sportsObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        playSports();
+        sportsObserver.disconnect();
+      }
+    }, { threshold: .5 });
+    sportsObserver.observe(sportMotifs);
+  }
+}
