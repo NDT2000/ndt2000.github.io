@@ -6,20 +6,20 @@ My software engineering portfolio, built around a vision: making complex workflo
 
 ## What's inside
 
-- **Vision:** a focused introduction and an interactive illustration of a repeatable import.
-- **Selected work:** three visual case studies about trustworthy financial data, resilient editing, and predictable AI responses.
+- **Vision:** a focused introduction and an engineering lens spanning resilient collaboration, trustworthy data, and explicit decisions.
+- **Selected work:** substantial clinical and finance case studies, followed by CareerLift, connecting architecture to the problems each project solves.
 - **Approach:** the invariants, recovery paths, and observable outcomes behind reliable workflows.
 - **About:** personal background, compact experience notes, resume, and opportunities.
 - **Contact:** direct email and professional links.
 
-The import illustration uses a documented Finance Tracker sample. It changes explanatory text only; it does not upload files or connect to the application backend.
+The hero links to three engineering themes rather than promoting one application. Clinical Notes and Finance Tracker each have a substantial case study; diagrams explain architecture without connecting to a project backend.
 
 ### Featured projects
 
 | Project | Focus |
 | --- | --- |
 | [Personal Finance Tracker](https://github.com/NDT2000/Finance-Tracker) | Reliable CSV imports, currency-aware reporting, spending forecasts, and financial-planning scenarios. |
-| [AI-Assisted Clinical Notes Workflow](https://github.com/NDT2000/AI-Assisted-Clinical-Notes-Workflow) | Offline edits, conflict resolution, review states, and authorization using a mock API and synthetic data. |
+| [AI-Assisted Clinical Notes Workflow](https://github.com/NDT2000/AI-Assisted-Clinical-Notes-Workflow) | Review lifecycle, persistent offline edits, immutable versions, real-time collaboration, and server-enforced permissions with React, FastAPI, PostgreSQL, and Redis. All data is synthetic; AI generation is planned. |
 | [CareerLift](https://github.com/NDT2000/CareerLift) | AI career gap analysis with structured-response validation and retries. |
 | Personal RAG Chatbot | Document retrieval and contextual answers using semantic search. |
 
@@ -47,7 +47,7 @@ Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. I
 | --- | --- |
 | `index.html` | Vision, workflow illustration, case studies, background, and contact. |
 | `styles.css` | Dark theme, responsive layouts, and animation styles. |
-| `script.js` | Accessible mobile navigation, import illustration, section reveals, and word reveal. |
+| `script.js` | Accessible mobile navigation, section navigation, section reveals, and word reveal. |
 | `assets/fonts/` | Self-hosted Manrope weights and font license. |
 | `favicon.svg` | Portfolio monogram. |
 | `404.html` | Custom GitHub Pages missing-page response. |
@@ -73,7 +73,7 @@ Before publishing:
 
 - Check desktop and narrow mobile layouts.
 - Open and close the mobile menu; follow the navigation and project links.
-- Repeat the illustrative import and confirm financial totals do not change.
+- Follow each engineering-lens link to its corresponding case study.
 - Expand case study and experience notes; check keyboard focus and Escape in the mobile menu.
 - Check reduced motion and JavaScript-disabled navigation.
 - Verify the profile image and every resume download.
