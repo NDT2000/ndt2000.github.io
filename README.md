@@ -1,15 +1,18 @@
 # Nayan Taori — Personal Portfolio
 
-My portfolio as a backend and full stack software engineer: the problems I've worked on, the engineering decisions behind my projects, and ways to connect.
+My software engineering portfolio, built around a vision: making complex workflows reliable. Explore the problems, decisions, and evidence behind my work.
 
 **[Visit the portfolio](https://ndt2000.github.io/)** · **[Download my resume](./Nayan_Taori_Resume.pdf)** · **[LinkedIn](https://www.linkedin.com/in/nayan-taori/)**
 
 ## What's inside
 
-- **Experience:** software development in banking and healthcare, plus open-source development infrastructure.
-- **Projects:** problem-focused stories, expandable engineering notes, and links to source code and documented examples.
-- **About:** engineering interests, background, and the kinds of roles I'm looking for.
-- **Contact:** email, LinkedIn, GitHub, and resume download.
+- **Vision:** a focused introduction and an interactive illustration of a repeatable import.
+- **Selected work:** three visual case studies about trustworthy financial data, resilient editing, and predictable AI responses.
+- **Approach:** the invariants, recovery paths, and observable outcomes behind reliable workflows.
+- **About:** personal background, compact experience notes, resume, and opportunities.
+- **Contact:** direct email and professional links.
+
+The import illustration uses a documented Finance Tracker sample. It changes explanatory text only; it does not upload files or connect to the application backend.
 
 ### Featured projects
 
@@ -36,15 +39,19 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 Open the local server in your browser to inspect the site. Stop it with `Ctrl+C`. Changes appear after refreshing; the server does not provide automatic reload.
 
-Google Fonts and Font Awesome load from external services. Internet access is needed for those fonts and icons; portfolio content and local assets are served from this repository.
+Manrope fonts are self-hosted in `assets/fonts/` with their Open Font License. Icons are inline SVG; no font CDN, icon library, or external runtime request is required.
 
 ## Repository structure
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Page content, navigation, project stories, and links. |
+| `index.html` | Vision, workflow illustration, case studies, background, and contact. |
 | `styles.css` | Dark theme, responsive layouts, and animation styles. |
-| `script.js` | Mobile navigation, smooth scrolling, scroll progress, and visual effects. |
+| `script.js` | Accessible mobile navigation, import illustration, section reveals, and word reveal. |
+| `assets/fonts/` | Self-hosted Manrope weights and font license. |
+| `favicon.svg` | Portfolio monogram. |
+| `404.html` | Custom GitHub Pages missing-page response. |
+| `site-notes.html` | Privacy information and site terms. |
 | `Profile.jpeg` | Profile photograph. |
 | `Nayan_Taori_Resume.pdf` | Resume used by all download links. |
 
@@ -58,7 +65,9 @@ Before publishing:
 
 - Check desktop and narrow mobile layouts.
 - Open and close the mobile menu; follow the navigation and project links.
-- Expand the engineering notes and confirm they remain readable.
+- Repeat the illustrative import and confirm financial totals do not change.
+- Expand case study and experience notes; check keyboard focus and Escape in the mobile menu.
+- Check reduced motion and JavaScript-disabled navigation.
 - Verify the profile image and every resume download.
 - Check the browser console for JavaScript errors.
 

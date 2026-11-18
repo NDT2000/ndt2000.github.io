@@ -1,195 +1,107 @@
-// Scroll Progress Indicator
-function updateScrollProgress() {
-    const scrollProgress = document.getElementById('scrollProgress');
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    if (scrollProgress) scrollProgress.style.width = scrollPercentage + '%';
-}
+document.documentElement.classList.add('js');
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('#nav-links');
+const mobile = window.matchMedia('(max-width: 600px)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const navLinks = [...document.querySelectorAll('.nav-links a')];
 
-// Smooth scrolling for in-page nav links, with automatic mobile-menu close
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        closeMobileMenu();
-    });
+function closeMenu(returnFocus = false) {
+  toggle?.setAttribute('aria-expanded', 'false');
+  menu?.classList.remove('is-open');
+  document.body.classList.remove('menu-open');
+  if (returnFocus) toggle?.focus();
+}
+toggle?.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') !== 'true';
+  toggle.setAttribute('aria-expanded', String(open));
+  menu.classList.toggle('is-open', open);
+  document.body.classList.toggle('menu-open', open);
+});
+navLinks.forEach((link, index) => {
+  link.style.setProperty('--link-index', index);
+  link.addEventListener('click', () => closeMenu());
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menu?.classList.contains('is-open')) closeMenu(true);
+  if (event.key === 'Tab' && menu?.classList.contains('is-open')) {
+    const last = navLinks.at(-1);
+    if (event.shiftKey && document.activeElement === toggle) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); toggle.focus(); }
+  }
+});
+mobile.addEventListener('change', () => closeMenu());
+
+// The import interaction illustrates a documented invariant; no backend is called.
+let importCount = 1;
+const replay = document.querySelector('#replay-import');
+if (replay) replay.disabled = false;
+replay?.addEventListener('click', () => {
+  importCount += 1;
+  document.querySelector('#replay-status').textContent = `Import ${importCount}: already recorded. Totals unchanged.`;
+  const board = document.querySelector('.workflow-board');
+  board.classList.remove('is-replayed');
+  requestAnimationFrame(() => requestAnimationFrame(() => board.classList.add('is-replayed')));
 });
 
-// Intersection Observer for scroll-in animations
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-}, observerOptions);
-
-// Navbar background state on scroll (nav itself always stays visible/accessible)
-function updateNavbar() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-}
-
-// --- Mobile menu ---
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks = document.getElementById('navLinks');
-
-function openMobileMenu() {
-    if (!navLinks || !mobileMenuBtn) return;
-    navLinks.classList.add('active');
-    mobileMenuBtn.setAttribute('aria-expanded', 'true');
-    mobileMenuBtn.innerHTML = '<i class="fas fa-xmark"></i>';
-}
-
-function closeMobileMenu() {
-    if (!navLinks || !mobileMenuBtn) return;
-    navLinks.classList.remove('active');
-    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-}
-
-function toggleMobileMenu() {
-    if (!navLinks) return;
-    if (navLinks.classList.contains('active')) {
-        closeMobileMenu();
-    } else {
-        openMobileMenu();
+if ('IntersectionObserver' in window) {
+  // Observe first, then opt into animation so unsupported browsers show all content.
+  const revealObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
     }
-}
+  }, { threshold: 0.08 });
+  if (!reducedMotion.matches) document.querySelectorAll('.case-study, .principles article, .about-copy').forEach(element => {
+    revealObserver.observe(element);
+    element.classList.add('reveal');
+  });
 
-if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-}
-
-// Close mobile menu when clicking outside it
-document.addEventListener('click', (e) => {
-    if (!navLinks || !navLinks.classList.contains('active')) return;
-    const clickedInsideMenu = navLinks.contains(e.target) || (mobileMenuBtn && mobileMenuBtn.contains(e.target));
-    if (!clickedInsideMenu) closeMobileMenu();
-});
-
-// Close mobile menu on resize back up to desktop width
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) closeMobileMenu();
-});
-
-// Respect the user's motion preference and device input type before running
-// any purely-decorative effects (particles, custom cursor).
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
-const wantsDecorativeEffects = !prefersReducedMotion && hasFinePointer;
-
-// Particle effect for hero section (skipped on touch devices / reduced motion)
-function createParticles() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    const particleCount = 30;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--particle-color);
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: particleFloat ${3 + Math.random() * 4}s linear infinite;
-            animation-delay: ${Math.random() * 5}s;
-        `;
-        hero.appendChild(particle);
+  const heading = document.querySelector('.word-reveal');
+  if (heading) {
+    // Keep the original text accessible and readable without animation support.
+    const label = [...heading.childNodes].map(node => node.nodeName === 'BR' ? ' ' : node.textContent).join('');
+    heading.setAttribute('aria-label', label);
+    for (const node of [...heading.childNodes]) if (node.nodeType === Node.TEXT_NODE) {
+      const fragment = document.createDocumentFragment();
+      for (const word of node.textContent.split(/(\s+)/)) {
+        if (/^\s*$/.test(word)) fragment.append(document.createTextNode(word));
+        else { const span = document.createElement('span'); span.textContent = word; span.setAttribute('aria-hidden', 'true'); fragment.append(span); }
+      }
+      node.replaceWith(fragment);
     }
-}
-
-// Custom cursor glow (desktop with a fine pointer only)
-function initCursorGlow() {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor-glow';
-    document.body.appendChild(cursor);
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-}
-
-// Click ripple effect
-document.addEventListener('click', (e) => {
-    const ripple = document.createElement('div');
-    ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: var(--ripple-color);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        left: ${e.clientX - 25}px;
-        top: ${e.clientY - 25}px;
-        width: 50px;
-        height: 50px;
-        pointer-events: none;
-        z-index: 9999;
-    `;
-
-    document.body.appendChild(ripple);
-
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-});
-
-// Initialize everything once the DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-    // Observe elements for scroll-in animation
-    const animatedElements = document.querySelectorAll(
-        '.section-title, .about-text, .experience-item, .work-card'
-    );
-    animatedElements.forEach(el => observer.observe(el));
-
-    // Staggered animation delays
-    document.querySelectorAll('.work-card').forEach((card, index) => {
-        card.style.transitionDelay = `${index * 0.15}s`;
-    });
-
-    document.querySelectorAll('.experience-item').forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.15}s`;
-    });
-
-    // Decorative, non-essential effects only on capable devices
-    if (wantsDecorativeEffects) {
-        createParticles();
-        initCursorGlow();
+    const words = [...heading.querySelectorAll('span')];
+    let litCount = 0;
+    let scheduled = false;
+    function updateWords() {
+      scheduled = false;
+      const bounds = heading.getBoundingClientRect();
+      const start = window.innerHeight * .85;
+      const distance = window.innerHeight * .6 + bounds.height;
+      const progress = Math.max(0, Math.min(1, (start - bounds.top) / distance));
+      litCount = reducedMotion.matches ? words.length : Math.max(litCount, Math.ceil(progress * words.length));
+      words.forEach((word, index) => word.classList.toggle('is-lit', index < litCount));
     }
-});
-
-// Loading state
-window.addEventListener('load', function () {
-    document.body.classList.add('loaded');
-});
-
-// Throttled scroll handling via rAF
-let ticking = false;
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            updateScrollProgress();
-            updateNavbar();
-            ticking = false;
-        });
-        ticking = true;
+    if (!reducedMotion.matches) heading.classList.add('is-observed');
+    function requestWords() {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(updateWords); }
     }
-}
+    window.addEventListener('scroll', requestWords, { passive: true });
+    window.addEventListener('resize', requestWords);
+    updateWords();
+  }
 
-window.addEventListener('scroll', requestTick);
+  const sectionObserver = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible) navLinks.forEach(link => {
+      if (link.hash === `#${visible.target.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-15% 0px -45% 0px', threshold: [0, .1, .3] });
+  document.querySelectorAll('main > section[id]').forEach(section => sectionObserver.observe(section));
+}
+reducedMotion.addEventListener('change', () => {
+  if (reducedMotion.matches) {
+    document.querySelectorAll('.reveal').forEach(element => element.classList.add('is-visible'));
+    document.querySelectorAll('.word-reveal span').forEach(word => word.classList.add('is-lit'));
+  }
+});
